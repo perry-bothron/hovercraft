@@ -128,6 +128,9 @@ def generate(args):
     for image in tree.iterdescendants('img'):
         filename = image.attrib['src']
         source_files.append(copy_resource(filename, sourcedir, args.targetdir))
+    for video in tree.iterdescendants('video'):
+        filename = video.attrib['src']
+        source_files.append(copy_resource(filename, sourcedir, args.targetdir))
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
 
