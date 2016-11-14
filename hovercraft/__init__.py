@@ -20,8 +20,19 @@ class HovercraftEventHandler(FileSystemEventHandler):
         super().__init__()
 
     def on_modified(self, event):
-        if event.src_path in self.filelist:
-            print("File %s modified, update presentation" % event.src_path)
+        self._update(event.src_path)
+
+    def on_created(self, event):
+        self._update(event.src_path)
+
+    def on_moved(self, event):
+        self._update(event.dest_path)
+
+    def _update(self, src_path):
+        if self.quit:
+            return
+        if src_path in self.filelist:
+            print("File %s modified, update presentation" % src_path)
             self.quit = True
 
 
@@ -90,6 +101,11 @@ def main():
         '--css',
         help=('An additional css file for the presentation to use. '
               'See also the ``:css:`` settings of the presentation.'))
+    parser.add_argument(
+        '-j',
+        '--js',
+        help=('An additional javascript file for the presentation to use. Added as a js-body script.'
+              'See also the ``:js-body:`` settings of the presentation.'))
     parser.add_argument(
         '-a',
         '--auto-console',

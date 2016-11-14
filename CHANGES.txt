@@ -1,10 +1,20 @@
 Changes
 =======
 
-2.2 (unreleased)
+2.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Better implementation of #98
+
+- #72: Support for adding additional JS files [hbldh]
+
+- Upgraded impress.js to 0.6.0
+
+
+2.2 (2016-10-15)
+----------------
+
+- #98: Presentation not update when using gedit
 
 
 2.1 (2016-02-27)
